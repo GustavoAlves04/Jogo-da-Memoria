@@ -14,7 +14,10 @@
     justify-content: center;
     margin-bottom: 50px;
 }
-
+.login-header img {
+    width: 150px;
+    margin-bottom: 20px;
+}
 .login-header h1{
     font-size: 2rem;
     color: #303030c7;
