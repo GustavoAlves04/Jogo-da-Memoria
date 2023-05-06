@@ -25,7 +25,8 @@
     position: absolute;
     background-size: cover;
     background-position: center;
-    border: 1px solid rgba(255, 255, 0, 0.836);
+    border: 1px solid rgb(255, 230, 0);
+    border-radius: 10px;
 }
 
 .front{
@@ -34,6 +35,6 @@
 }
 
 .back{
-    background-image: url(../img/back2.png);
+    background-image: url(../img/back.png);
     backface-visibility: hidden;
 }
