@@ -21,17 +21,35 @@ const createElement = (tag, className) => {
 let firstCard = ''
 let secoundCard = ''
 
+const checkEndGame = () => {
+  const disableCards = document.querySelectorAll('.disable-card')
+
+  if(disableCards.length === 20){
+    alert('Parabens, você conseguiu')
+  }
+}
+
 const checkCards = () =>{
   const firstCharacter = firstCard.getAttribute('data-character')
   const secoundCharacter = secoundCard.getAttribute('data-character')
 
-  if(firstCharacter === secoundCard){
+  if(firstCharacter === secoundCharacter){
+    firstCard.firstChild.classList.add('disable-card')
+    secoundCard.firstChild.classList.add('disable-card')
 
+    firstCard = ''
+    secoundCard = ''
+
+    checkEndGame()
   }
   else{
     setTimeout(()=>{
       firstCard.classList.remove('reveal-card')
       secoundCard.classList.remove('reveal-card')
+
+      firstCard = ''
+      secoundCard = ''
+
     }, 500)
   }
 }
