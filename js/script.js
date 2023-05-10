@@ -1,46 +1,83 @@
 const grid = document.querySelector(".grid");
 
 const charactersSimpson = [
-    'bart',
-    'burns',
-    'homer',
-    'krusty',
-    'lisa',
-    'marge',
-    'moe',
-    'milhouse',
-    'nelson',
-    'maggie',
-]
-const createElement = (tag, className) =>{
+  "bart",
+  "burns",
+  "homer",
+  "krusty",
+  "lisa",
+  "marge",
+  "moe",
+  "milhouse",
+  "nelson",
+  "maggie",
+];
+const createElement = (tag, className) => {
+  const element = document.createElement(tag);
+  element.className = className;
+  return element;
+};
 
-    const element = document.createElement(tag)
-    element.className = className
-    return element
+let firstCard = ''
+let secoundCard = ''
+
+const checkCards = () =>{
+  const firstCharacter = firstCard.getAttribute('data-character')
+  const secoundCharacter = secoundCard.getAttribute('data-character')
+
+  if(firstCharacter === secoundCard){
+
+  }
+  else{
+    setTimeout(()=>{
+      firstCard.classList.remove('reveal-card')
+      secoundCard.classList.remove('reveal-card')
+    }, 500)
+  }
+}
+
+const revealCard = ( {target}) => {
+
+  if(target.parentNode.className.includes('reveal-card')){
+    return
+  }
+
+  if(firstCard === ''){
+    target.parentNode.classList.add('reveal-card')
+    firstCard = target.parentNode
+  }else if(secoundCard === ''){
+    target.parentNode.classList.add('reveal-card')
+    secoundCard = target.parentNode
+
+    checkCards()
+  }
+
 }
 const createCard = (character) => {
-  const card = createElement('div', 'card');
-  const front = createElement('div', 'face front');
-  const back = createElement('div', 'face back');
+  const card = createElement("div", "card");
+  const front = createElement("div", "face front");
+  const back = createElement("div", "face back");
 
-  front.style.backgroundImage = `url('../img/${character}.jpg')`
+  front.style.backgroundImage = `url('../img/${character}.jpg')`;
 
   card.appendChild(front);
   card.appendChild(back);
 
-  return card
+  card.addEventListener('click', revealCard)
+  card.setAttribute('data-character', character)
+  return card;
 };
 
 const loadGame = () => {
+  const duplicateCharacters = [...charactersSimpson, ...charactersSimpson];
 
-  const duplicateCharacters = [ ...charactersSimpson, ...charactersSimpson]
+  const arrayEmbaralhado = duplicateCharacters.sort( ()=> Math.random() - 0.5 )
 
-  duplicateCharacters.forEach((characters) =>{
 
-    const card = createCard(characters)
-    grid.appendChild(card)
+  arrayEmbaralhado.forEach((characters) => {
+    const card = createCard(characters);
+    grid.appendChild(card);
+  });
+};
 
-  })
-}
-
-loadGame()
+loadGame();
