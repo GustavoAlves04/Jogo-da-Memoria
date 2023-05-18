@@ -28,7 +28,7 @@ const checkEndGame = () => {
 
   if (disableCards.length === 20) {
     clearInterval(this.loop);
-    alert(`Parabéns, ${spanPlayer.innerHTML} você conseguiu`);
+    Swal.fire(`Parabéns ${spanPlayer.innerHTML}, você ganhou! Seu tempo foi ${timer.innerHTML} segundos.`)
   }
 };
 
